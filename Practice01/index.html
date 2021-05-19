@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="first">
+        <div class="maliat-kol"><span>مالیات کل</span>:<span class="maliatKol">0</span><span>ریال</span></div>
+        <div class="mablagh-kol"><span>مبلغ کل</span>:<span class="mablaghKol">0</span><span>ریال</span></div>
+      </div>
+      <div class="main">
+        <button class="mybtn">+</button>
+        <div class="myTable">
+          <table>
+            <thead>
+            <tr>
+              <th>ردیف</th>
+              <th>کالا یا خدمات</th>
+              <th>شرح</th>
+              <th>واحد</th>
+              <th>تعداد</th>
+              <th>مبلغ واحد(ریال)</th>
+              <th>تخفیف(درصد)</th>
+              <th>مالیات(ریال)</th>
+              <th>مبلغ کل(ریال)</th>
+              <th></th>
+            </tr>
+            <thead>
+              <tbody>
+              
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+      integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        let button = $(".mybtn");
+        let kala="کالا";
+        let khadamat="خدمات";
+        let selecting="<select id='options'><option value='کالا'>"
+        +kala+
+        "</option><option value='خدمات'>"
+          +khadamat+
+        "</option></select>";
+        let sharh="<input type=text id='sharh'></input>";
+        let vahed="<input type=text id='vahed'></input>";
+        let tedad="<input type=text id='tedad'></input>";
+        let mablagh="<input type=text id='mablagh'></input>";
+        let takhfif="<input type=text id='takhfif'></input>";
+        let maliat="<input type=text id='maliat'></input>";
+        let mablaghkol="<p type=text id='mablaghkol'>0</p>";
+        let savebutton="<img src='images/save.png' class='btnSave'>";
+        let undo="<img src='images/undo.png' class='btnUndo'>";
+        // <img src='images/delete.png' class='btnDelete'/>
+        let i=1;
+  
+         $(button).on("click", function () {
+         let select =
+       "<tr data-name='"+i+"' class='tr"+i+"'><td><p>1</p></td><td>"+selecting+"</td><td>"+sharh+"</td><td>"+vahed+"</td><td>"+tedad+"</td><td>"+mablagh+"</td><td>"+takhfif+"</td><td>"+maliat+"</td><td>"+mablaghkol+"</td><td>"+savebutton+undo+"</td></tr>";
+        
+         $(".myTable tbody").prepend(select);
+       });
+
+       $("body").on("click", ".btnSave", function () {
+        let total=0;
+        let par = $(this).parent().parent(); 
+        let row=par.children("td:nth-child(1)");
+        let selectBox=par.children("td:nth-child(2)");
+        let description = par.children("td:nth-child(3)");
+        let unit = par.children("td:nth-child(4)");
+        let number = par.children("td:nth-child(5)");
+        let price =  par.children("td:nth-child(6)")
+        let discount= par.children("td:nth-child(7)");
+        let taxation=par.children("td:nth-child(8)");
+        let totalAmount=par.children("td:nth-child(9)")
+        let tdButtons = par.children("td:nth-child(10)");
+        total=(Number($(number).children("input[type=text]").val()) * Number($(price).children("input[type=text]").val()) ) + Number($(taxation).children("input[type=text]").val())-Number($(discount).children("input[type=text]").val());
+        $(".maliatKol").text(Number($(".maliatKol").text()) +Number($(taxation).children("input[type=text]").val()));
+        $(".mablaghKol").text(Number($(".mablaghKol").text())+total);
+        row.html("1");
+        selectBox.html(selectBox.children("#options").val());
+        description.html(description.children("input[type=text]").val());
+        unit.html(unit.children("input[type=text]").val());
+        number.html(number.children("input[type=text]").val());
+        price.html(price.children("input[type=text]").val());
+        discount.html(discount.children("input[type=text]").val());
+        taxation.html(taxation.children("input[type=text]").val());
+        totalAmount.html(total);
+        tdButtons.html(
+          "<img src='images/pencil.png' class='btnEdit'/><img src='images/delete.png' class='btnDelete' />"
+          );
+      });
+
+      
+      // $("body").on("click", ".btnEdit", function () {
+      //   let sum=0;
+      //   let par = $(this).parent().parent(); 
+      //   let row=par.children("td:nth-child(1)");
+      //   let selectBox=par.children("td:nth-child(2)");
+      //   let description = par.children("td:nth-child(3)");
+      //   let unit = par.children("td:nth-child(4)");
+      //   let number = par.children("td:nth-child(5)");
+      //   let price =  par.children("td:nth-child(6)")
+      //   let discount= par.children("td:nth-child(7)");
+      //   let taxation=par.children("td:nth-child(8)");
+      //   let totalAmount=par.children("td:nth-child(9)")
+      //   let tdButtons = par.children("td:nth-child(10)");
+      //   selectBox.html(
+      //     "<select id='options'><option value='کالا'>"
+      //   +"کالا"+
+      //   "</option><option value='خدمات'>"
+      //     +"خدمات"+
+      //   "</option></select>"        )
+      //   description.html(
+      //     "<input type='text'  value='" + description.html() + "'/>"
+      //   );
+      //   unit.html(
+      //     "<input type='text' value='" + unit.html() + "'/>"
+      //   );
+      //   number.html(
+      //     "<input type='text' value='" + number.html() + "'/>"
+      //   );
+      //   price.html(
+      //     "<input type='text' value='" + price.html() + "'/>"
+      //   );
+      //   discount.html(
+      //     "<input type='text' value='" + discount.html() + "'/>"
+      //   );
+      //   taxation.html(
+      //     "<input type='text' value='" + taxation.html() + "'/>"
+      //   );
+      //   sum=( Number(number.children("input[type=text]").val()) * Number(price.children("input[type=text]").val()) ) + Number(taxation.children("input[type=text]").val())-Number(discount.children("input[type=text]").val());
+      //   totalAmount.html(sum);
+
+      //   tdButtons.html("<img src='images/save.png' class='btnSave'/><img src='images/delete.png' class='btnDelete' />");
+      // });
+      $("body").on("click", ".btnDelete", function () {
+        var par = $(this).parent().parent(); 
+        par.remove();
+      });
+    })
+    </script>
+  </body>
+</html>
