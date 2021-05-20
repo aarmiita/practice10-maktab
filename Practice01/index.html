@@ -105,48 +105,48 @@
       });
 
       
-      // $("body").on("click", ".btnEdit", function () {
-      //   let sum=0;
-      //   let par = $(this).parent().parent(); 
-      //   let row=par.children("td:nth-child(1)");
-      //   let selectBox=par.children("td:nth-child(2)");
-      //   let description = par.children("td:nth-child(3)");
-      //   let unit = par.children("td:nth-child(4)");
-      //   let number = par.children("td:nth-child(5)");
-      //   let price =  par.children("td:nth-child(6)")
-      //   let discount= par.children("td:nth-child(7)");
-      //   let taxation=par.children("td:nth-child(8)");
-      //   let totalAmount=par.children("td:nth-child(9)")
-      //   let tdButtons = par.children("td:nth-child(10)");
-      //   selectBox.html(
-      //     "<select id='options'><option value='کالا'>"
-      //   +"کالا"+
-      //   "</option><option value='خدمات'>"
-      //     +"خدمات"+
-      //   "</option></select>"        )
-      //   description.html(
-      //     "<input type='text'  value='" + description.html() + "'/>"
-      //   );
-      //   unit.html(
-      //     "<input type='text' value='" + unit.html() + "'/>"
-      //   );
-      //   number.html(
-      //     "<input type='text' value='" + number.html() + "'/>"
-      //   );
-      //   price.html(
-      //     "<input type='text' value='" + price.html() + "'/>"
-      //   );
-      //   discount.html(
-      //     "<input type='text' value='" + discount.html() + "'/>"
-      //   );
-      //   taxation.html(
-      //     "<input type='text' value='" + taxation.html() + "'/>"
-      //   );
-      //   sum=( Number(number.children("input[type=text]").val()) * Number(price.children("input[type=text]").val()) ) + Number(taxation.children("input[type=text]").val())-Number(discount.children("input[type=text]").val());
-      //   totalAmount.html(sum);
+      $("body").on("click", ".btnEdit", function () {
+        let sum=0;
+        let par = $(this).parent().parent(); 
+        let row=par.children("td:nth-child(1)");
+        let selectBox=par.children("td:nth-child(2)");
+        let description = par.children("td:nth-child(3)");
+        let unit = par.children("td:nth-child(4)");
+        let number = par.children("td:nth-child(5)");
+        let price =  par.children("td:nth-child(6)")
+        let discount= par.children("td:nth-child(7)");
+        let taxation=par.children("td:nth-child(8)");
+        let totalAmount=par.children("td:nth-child(9)")
+        let tdButtons = par.children("td:nth-child(10)");
+        selectBox.html(
+          "<select id='options'><option value='کالا'>"
+        +"کالا"+
+        "</option><option value='خدمات'>"
+          +"خدمات"+
+        "</option></select>"        )
+        description.html(
+          "<input type='text'  value='" + description.html() + "'/>"
+        );
+        unit.html(
+          "<input type='text' value='" + unit.html() + "'/>"
+        );
+        number.html(
+          "<input type='text' value='" + number.html() + "'/>"
+        );
+        price.html(
+          "<input type='text' value='" + price.html() + "'/>"
+        );
+        discount.html(
+          "<input type='text' value='" + discount.html() + "'/>"
+        );
+        taxation.html(
+          "<input type='text' value='" + taxation.html() + "'/>"
+        );
+        sum=( Number(number.children("input[type=text]").val()) * Number(price.children("input[type=text]").val()) ) + Number(taxation.children("input[type=text]").val())-Number(discount.children("input[type=text]").val());
+        totalAmount.html(sum);
 
-      //   tdButtons.html("<img src='images/save.png' class='btnSave'/><img src='images/delete.png' class='btnDelete' />");
-      // });
+        tdButtons.html("<img src='images/save.png' class='btnSave'/><img src='images/delete.png' class='btnDelete' />");
+      });
       $("body").on("click", ".btnDelete", function () {
         var par = $(this).parent().parent(); 
         par.remove();

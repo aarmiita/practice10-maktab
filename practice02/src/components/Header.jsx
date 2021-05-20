@@ -1,13 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react'
 import logo from './images/logo.svg'
-
+import BurgureMenue from './BurgureMenue'
 const Header = () => {
-
     return (
         <header className="myHeader">
             <div className="upper"></div>
             <div className="down">
                 <div className="left">
+                <BurgureMenue />
                     <ul className="leftul">
                     <li><a href="#">فروشگاه من</a></li>
                 </ul>
